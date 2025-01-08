@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./fe-stunting-app
+      dockerfile: Dockerfile
+    ports:
+      - "4173:4173"
+    networks:
+      - app_network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend-stunting-app
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: Eren1453
+      DB_NAME: kembangq
+    networks:
+      - app_network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: Eren1453
+      MYSQL_DATABASE: kembangq
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
