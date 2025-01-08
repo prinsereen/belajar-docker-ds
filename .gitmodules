@@ -1,0 +1,6 @@
+[submodule "backend-stunting-app"]
+	path = backend-stunting-app
+	url = https://github.com/username/backend-stunting-app.git
+[submodule "fe-stunting-app"]
+	path = fe-stunting-app
+	url = https://github.com/username/fe-stunting-app.git
